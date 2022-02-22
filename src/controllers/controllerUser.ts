@@ -20,12 +20,12 @@ interface Body {
 const createUser = async (req: Request, res: Response) => {
   const { username }: Body = req.body;
 
-  const token = jwt.sign({ username }, authenticate.mySecrete, {
+  const token = jwt.sign({ id: 1, username }, authenticate.mySecrete, {
     expiresIn: '12h',
     algorithm: 'HS256',
   });
 
-  res.status(201).json(token);
+  res.status(201).json({ token });
 };
 
 export default createUser;
