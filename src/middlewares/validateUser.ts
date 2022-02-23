@@ -49,6 +49,14 @@ const validateClasseLength = (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
+const validateLevel = (req: Request, res: Response, next: NextFunction) => {
+  const { level }: interfacesUser = req.body;
+  const message = { error: 'Level is required' };
+
+  if (!level) return res.status(400).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
@@ -56,4 +64,5 @@ export = {
   validateClasse,
   validateClasseString,
   validateClasseLength,
+  validateLevel,
 };
