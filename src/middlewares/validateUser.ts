@@ -73,6 +73,14 @@ const validateLevelMaiorQueZero = (req: Request, res: Response, next: NextFuncti
   next();
 };
 
+const validatePassword = (req: Request, res: Response, next: NextFunction) => {
+  const { password }: interfacesUser = req.body;
+  const message = { error: 'Password is required' };
+
+  if (password === undefined) return res.status(400).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
@@ -83,4 +91,5 @@ export = {
   validateLevel,
   validateLevelNumber,
   validateLevelMaiorQueZero,
+  validatePassword,
 };
