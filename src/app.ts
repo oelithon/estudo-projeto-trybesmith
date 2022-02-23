@@ -15,6 +15,7 @@ app
     user.validateUsernameLength,
     user.validateClasse,
     user.validateClasseString,
+    user.validateClasseLength,
     controllerUser,
   );
 

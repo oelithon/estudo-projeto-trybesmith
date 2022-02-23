@@ -41,10 +41,19 @@ const validateClasseString = (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
+const validateClasseLength = (req: Request, res: Response, next: NextFunction) => {
+  const { classe }: interfacesUser = req.body;
+  const message = { error: 'Classe must be longer than 2 characters' };
+
+  if (classe.length < 3) return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
   validateUsernameLength,
   validateClasse,
   validateClasseString,
+  validateClasseLength,
 };
