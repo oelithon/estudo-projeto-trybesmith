@@ -1,7 +1,7 @@
 import express from 'express';
 import controllerUser from './controllers/controllerUser';
 
-import validateUsername from './middlewares/validateUser';
+import { validateUsername, validateUsernameString } from './middlewares/validateUser';
 
 const app = express();
 
@@ -11,6 +11,7 @@ app
   .route('/users')
   .post(
     validateUsername,
+    validateUsernameString,
     controllerUser,
   );
 
