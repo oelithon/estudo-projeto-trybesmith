@@ -13,7 +13,7 @@ const authenticate = {
 const createUser = async (req: Request, res: Response) => {
   const { username, classe, level, password }: interfacesUser = req.body;
 
-  await serviceUser({ username, classe, level, password });
+  await serviceUser.create({ username, classe, level, password });
 
   const token = jwt.sign({ id: 1, username }, authenticate.mySecrete, {
     expiresIn: '12h',
