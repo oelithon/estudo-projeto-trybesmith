@@ -13,18 +13,19 @@ const loginUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   const userSelected = await serviceUser.getUser({ username, password });
-
+  
   if (!userSelected) {
     const message = { error: 'Username or password invalid' };
     return res.status(401).json(message);
   }
   
-  const token = jwt.sign({ username }, authenticate.mySecrete, {
+  const { id, username: user } = userSelected;
+  const token = jwt.sign({ id, username: user }, authenticate.mySecrete, {
     expiresIn: '12h',
     algorithm: 'HS256',
   });
 
-  return res.status(201).json({ token });
+  return res.status(200).json({ token });
 };
 
 export default loginUser;
