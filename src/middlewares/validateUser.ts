@@ -33,9 +33,18 @@ const validateClasse = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+const validateClasseString = (req: Request, res: Response, next: NextFunction) => {
+  const { classe }: interfacesUser = req.body;
+  const message = { error: 'Classe must be a string' };
+
+  if (typeof classe !== 'string') return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
   validateUsernameLength,
   validateClasse,
+  validateClasseString,
 };
