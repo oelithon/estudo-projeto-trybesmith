@@ -1,8 +1,8 @@
 import connection from './connection';
-import interfacesUser from '../interfaces/interfacesUser';
+import { Body, UserId } from '../interfaces/interfacesUser';
 import interfaceLogin from '../interfaces/interfaceLogin';
 
-const create = async (user: interfacesUser) => {
+const create = async (user: Body) => {
   const { username, classe, level, password } = user;
   await connection.execute(
     `
@@ -12,15 +12,15 @@ const create = async (user: interfacesUser) => {
   );
 };
 
-const getUser = async (login: interfaceLogin) => {
+const getUser = async (login: interfaceLogin): Promise<UserId> => {
   const { username, password } = login;
 
   const [users] = await connection.execute(`
     SELECT * FROM Trybesmith.Users
     WHERE username = ? AND password = ?
     `, [username, password]);
-
-  return users;
+  const [rows] = users as UserId[]; // pesquisar essa linha | https://github.com/tryber/sd-014-typescript-crud-mysql/tree/master/models
+  return rows;
 };
 
 export = {
