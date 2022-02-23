@@ -53,7 +53,7 @@ const validateLevel = (req: Request, res: Response, next: NextFunction) => {
   const { level }: interfacesUser = req.body;
   const message = { error: 'Level is required' };
 
-  if (!level) return res.status(400).json(message);
+  if (level === undefined) return res.status(400).json(message);
   next();
 };
 
@@ -62,6 +62,14 @@ const validateLevelNumber = (req: Request, res: Response, next: NextFunction) =>
   const message = { error: 'Level must be a number' };
 
   if (typeof level !== 'number') return res.status(422).json(message);
+  next();
+};
+
+const validateLevelMaiorQueZero = (req: Request, res: Response, next: NextFunction) => {
+  const { level }: interfacesUser = req.body;
+  const message = { error: 'Level must be greater than 0' };
+
+  if (level === 0) return res.status(422).json(message);
   next();
 };
 
@@ -74,4 +82,5 @@ export = {
   validateClasseLength,
   validateLevel,
   validateLevelNumber,
+  validateLevelMaiorQueZero,
 };
