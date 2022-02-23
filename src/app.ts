@@ -13,6 +13,7 @@ app
     user.validateUsername,
     user.validateUsernameString,
     user.validateUsernameLength,
+    user.validateClasse,
     controllerUser,
   );
 

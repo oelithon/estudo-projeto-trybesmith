@@ -25,8 +25,17 @@ const validateUsernameLength = (req: Request, res: Response, next: NextFunction)
   next();
 };
 
+const validateClasse = (req: Request, res: Response, next: NextFunction) => {
+  const { classe }: interfacesUser = req.body;
+  const message = { error: 'Classe is required' };
+
+  if (!classe) return res.status(400).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
   validateUsernameLength,
+  validateClasse,
 };
