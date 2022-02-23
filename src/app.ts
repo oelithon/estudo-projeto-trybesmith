@@ -10,7 +10,7 @@ app.use(express.json());
 
 app
   .route('/login')
-  .get(controllerLogin);
+  .post(controllerLogin);
 
 app
   .route('/users')
