@@ -1,5 +1,6 @@
 import express from 'express';
 import controllerUser from './controllers/controllerUser';
+import controllerLogin from './controllers/controllerLogin';
 
 import user from './middlewares/validateUser';
 
@@ -9,7 +10,7 @@ app.use(express.json());
 
 app
   .route('/login')
-  .get();
+  .get(controllerLogin);
 
 app
   .route('/users')
