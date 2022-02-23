@@ -1,7 +1,7 @@
 import express from 'express';
 import controllerUser from './controllers/controllerUser';
 
-import { validateUsername, validateUsernameString } from './middlewares/validateUser';
+import user from './middlewares/validateUser';
 
 const app = express();
 
@@ -10,8 +10,9 @@ app.use(express.json());
 app
   .route('/users')
   .post(
-    validateUsername,
-    validateUsernameString,
+    user.validateUsername,
+    user.validateUsernameString,
+    user.validateUsernameLength,
     controllerUser,
   );
 
