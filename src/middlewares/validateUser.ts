@@ -81,6 +81,14 @@ const validatePassword = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+const validatePasswordString = (req: Request, res: Response, next: NextFunction) => {
+  const { password }: interfacesUser = req.body;
+  const message = { error: 'Password must be a string' };
+
+  if (typeof password !== 'string') return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
@@ -92,4 +100,5 @@ export = {
   validateLevelNumber,
   validateLevelMaiorQueZero,
   validatePassword,
+  validatePasswordString,
 };

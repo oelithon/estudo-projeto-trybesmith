@@ -20,6 +20,7 @@ app
     user.validateLevelNumber,
     user.validateLevelMaiorQueZero,
     user.validatePassword,
+    user.validatePasswordString,
     controllerUser,
   );
 
