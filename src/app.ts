@@ -8,6 +8,10 @@ const app = express();
 app.use(express.json());
 
 app
+  .route('/login')
+  .get();
+
+app
   .route('/users')
   .post(
     user.validateUsername,
