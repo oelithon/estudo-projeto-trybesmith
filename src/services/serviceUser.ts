@@ -1,8 +1,8 @@
-import interfacesUser from '../interfaces/interfacesUser';
+import { Body } from '../interfaces/interfacesUser';
 import interfaceLogin from '../interfaces/interfaceLogin';
 import modelUser from '../models/modelUser';
 
-const create = async (user: interfacesUser) => {
+const create = async (user: Body) => {
   const { username, classe, level, password } = user;
 
   await modelUser.create({ username, classe, level, password });
