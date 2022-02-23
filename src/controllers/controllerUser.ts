@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import interfacesUser from '../interfaces/interfacesUser';
+import serviceUser from '../services/serviceUser';
 
 dotenv.config();
 
@@ -10,7 +11,9 @@ const authenticate = {
 };
 
 const createUser = async (req: Request, res: Response) => {
-  const { username }: interfacesUser = req.body;
+  const { username, classe, level, password }: interfacesUser = req.body;
+
+  await serviceUser({ username, classe, level, password });
 
   const token = jwt.sign({ id: 1, username }, authenticate.mySecrete, {
     expiresIn: '12h',
