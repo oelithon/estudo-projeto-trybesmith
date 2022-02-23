@@ -57,6 +57,14 @@ const validateLevel = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+const validateLevelNumber = (req: Request, res: Response, next: NextFunction) => {
+  const { level }: interfacesUser = req.body;
+  const message = { error: 'Level must be a number' };
+
+  if (typeof level !== 'number') return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
@@ -65,4 +73,5 @@ export = {
   validateClasseString,
   validateClasseLength,
   validateLevel,
+  validateLevelNumber,
 };
