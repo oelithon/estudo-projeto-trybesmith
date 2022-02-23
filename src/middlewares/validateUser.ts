@@ -89,6 +89,14 @@ const validatePasswordString = (req: Request, res: Response, next: NextFunction)
   next();
 };
 
+const validatePasswordLength = (req: Request, res: Response, next: NextFunction) => {
+  const { password }: interfacesUser = req.body;
+  const message = { error: 'Password must be longer than 7 characters' };
+
+  if (password.length < 8) return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateUsername,
   validateUsernameString,
@@ -101,4 +109,5 @@ export = {
   validateLevelMaiorQueZero,
   validatePassword,
   validatePasswordString,
+  validatePasswordLength,
 };

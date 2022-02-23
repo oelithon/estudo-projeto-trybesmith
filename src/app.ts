@@ -21,6 +21,7 @@ app
     user.validateLevelMaiorQueZero,
     user.validatePassword,
     user.validatePasswordString,
+    user.validatePasswordLength,
     controllerUser,
   );
 
