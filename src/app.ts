@@ -10,7 +10,11 @@ app.use(express.json());
 
 app
   .route('/login')
-  .post(controllerLogin);
+  .post(
+    user.validateUsername,
+    user.validatePassword,
+    controllerLogin,
+  );
 
 app
   .route('/users')
