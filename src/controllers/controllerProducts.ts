@@ -19,7 +19,7 @@ const createProduct = async (req: Request, res: Response) => {
 
     jwt.verify(authorization, authenticate.mySecrete);
 
-    const productId = await serviceProduct({ name, amount });
+    const productId = await serviceProduct.create({ name, amount });
     const productCreated = {
       item: {
         id: productId,
@@ -34,4 +34,13 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-export default createProduct;
+const getAllProducts = async (req: Request, res: Response) => {
+  const products = await serviceProduct.allProducts();
+
+  return res.status(200).json(products);
+};
+
+export = {
+  createProduct,
+  getAllProducts,
+};

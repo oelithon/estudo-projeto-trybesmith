@@ -3,9 +3,18 @@ import Product from '../interfaces/interfaceProduct';
 
 const create = async (product: Product) => {
   const { name, amount } = product;
-  const productId = await modelProduct({ name, amount });
+  const productId = await modelProduct.create({ name, amount });
 
   return productId;
 };
 
-export default create;
+const allProducts = async () => {
+  const products = await modelProduct.allProducts();
+
+  return products;
+};
+
+export = {
+  create,
+  allProducts,
+};
