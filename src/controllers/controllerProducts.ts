@@ -1,20 +1,37 @@
+import dotenv from 'dotenv';
+import * as jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import serviceProduct from '../services/serviceProduct';
 import Product from '../interfaces/interfaceProduct';
 
+dotenv.config();
+
+const authenticate = {
+  mySecrete: String(process.env.JWT_SECRET),
+};
+
 const createProduct = async (req: Request, res: Response) => {
-  const { name, amount }: Product = req.body;
+  try {
+    const { authorization } = req.headers;
+    const { name, amount }: Product = req.body;
 
-  const productId = await serviceProduct({ name, amount });
-  const productCreated = {
-    item: {
-      id: productId,
-      name,
-      amount,
-    },
-  };
+    if (!authorization) return res.status(401).json({ error: 'Token not found' });
 
-  return res.status(201).json(productCreated);
+    jwt.verify(authorization, authenticate.mySecrete);
+
+    const productId = await serviceProduct({ name, amount });
+    const productCreated = {
+      item: {
+        id: productId,
+        name,
+        amount,
+      },
+    };
+
+    return res.status(201).json(productCreated);
+  } catch (error) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
 };
 
 export default createProduct;
