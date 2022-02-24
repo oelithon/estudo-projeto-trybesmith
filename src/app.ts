@@ -5,6 +5,7 @@ import controllerLogin from './controllers/controllerLogin';
 import controllerProduct from './controllers/controllerProducts';
 
 import user from './middlewares/validateUser';
+import product from './middlewares/validadeProduct';
 
 const app = express();
 
@@ -38,6 +39,9 @@ app
   
 app
   .route('/products')
-  .post(controllerProduct);
+  .post(
+    product.validateName,
+    controllerProduct,
+  );
 
 export default app;
