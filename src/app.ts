@@ -43,6 +43,7 @@ app
     product.validateName,
     product.validateNameString,
     product.validateNameLength,
+    product.validateAmount,
     controllerProduct,
   );
 

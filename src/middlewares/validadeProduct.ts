@@ -25,8 +25,17 @@ const validateNameLength = (req: Request, res: Response, next: NextFunction) => 
   next();
 };
 
+const validateAmount = (req: Request, res: Response, next: NextFunction) => {
+  const { amount }: Product = req.body;
+  const message = { error: 'Amount is required' };
+
+  if (!amount) return res.status(400).json(message);
+  next();
+};
+
 export = {
   validateName,
   validateNameString,
   validateNameLength,
+  validateAmount,
 };
