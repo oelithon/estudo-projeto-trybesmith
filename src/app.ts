@@ -33,5 +33,9 @@ app
     user.validatePasswordLength,
     controllerUser,
   );
+  
+app
+  .route('/products')
+  .post();
 
 export default app;
