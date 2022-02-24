@@ -39,6 +39,7 @@ app
   
 app
   .route('/products')
+  .get(controllerProduct.getAllProducts)
   .post(
     product.validateName,
     product.validateNameString,
@@ -46,7 +47,7 @@ app
     product.validateAmount,
     product.validateAmountString,
     product.validateAmountLength,
-    controllerProduct,
+    controllerProduct.createProduct,
   );
 
 export default app;
