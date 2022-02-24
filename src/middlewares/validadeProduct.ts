@@ -33,9 +33,18 @@ const validateAmount = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+const validateAmountString = (req: Request, res: Response, next: NextFunction) => {
+  const { amount }: Product = req.body;
+  const message = { error: 'Amount must be a string' };
+
+  if (typeof amount !== 'string') return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateName,
   validateNameString,
   validateNameLength,
   validateAmount,
+  validateAmountString,
 };
