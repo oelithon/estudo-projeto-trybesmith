@@ -42,6 +42,7 @@ app
   .post(
     product.validateName,
     product.validateNameString,
+    product.validateNameLength,
     controllerProduct,
   );
 

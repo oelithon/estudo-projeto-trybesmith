@@ -17,7 +17,16 @@ const validateNameString = (req: Request, res: Response, next: NextFunction) => 
   next();
 };
 
+const validateNameLength = (req: Request, res: Response, next: NextFunction) => {
+  const { name }: Product = req.body;
+  const message = { error: 'Name must be longer than 2 characters' };
+
+  if (name.length < 3) return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateName,
   validateNameString,
+  validateNameLength,
 };
