@@ -41,10 +41,19 @@ const validateAmountString = (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
+const validateAmountLength = (req: Request, res: Response, next: NextFunction) => {
+  const { amount }: Product = req.body;
+  const message = { error: 'Amount must be longer than 2 characters' };
+
+  if (amount.length < 3) return res.status(422).json(message);
+  next();
+};
+
 export = {
   validateName,
   validateNameString,
   validateNameLength,
   validateAmount,
   validateAmountString,
+  validateAmountLength,
 };
