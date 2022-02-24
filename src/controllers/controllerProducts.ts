@@ -35,9 +35,19 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 const getAllProducts = async (req: Request, res: Response) => {
-  const products = await serviceProduct.allProducts();
+  try {
+    const { authorization } = req.headers;
 
-  return res.status(200).json(products);
+    if (!authorization) return res.status(401).json({ error: 'Token not found' });
+
+    jwt.verify(authorization, authenticate.mySecrete);
+
+    const products = await serviceProduct.allProducts();
+
+    return res.status(200).json(products);
+  } catch (error) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
 };
 
 export = {
