@@ -1,6 +1,8 @@
 import express from 'express';
+
 import controllerUser from './controllers/controllerUser';
 import controllerLogin from './controllers/controllerLogin';
+import controllerProduct from './controllers/controllerProducts';
 
 import user from './middlewares/validateUser';
 
@@ -36,6 +38,6 @@ app
   
 app
   .route('/products')
-  .post();
+  .post(controllerProduct);
 
 export default app;
