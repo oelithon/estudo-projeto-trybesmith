@@ -41,6 +41,7 @@ app
   .route('/products')
   .post(
     product.validateName,
+    product.validateNameString,
     controllerProduct,
   );
 
