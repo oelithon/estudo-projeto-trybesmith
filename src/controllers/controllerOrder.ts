@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Sale from '../interfaces/interfaceSale';
+import Sale from '../interfaces/interfaceOrder';
 
 const createOrder = (req: Request, res: Response) => {
   const { products } = req.body as Sale;
