@@ -50,4 +50,8 @@ app
     controllerProduct.createProduct,
   );
 
+app
+  .route('/orders')
+  .post();
+
 export default app;
