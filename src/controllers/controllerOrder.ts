@@ -1,10 +1,24 @@
+import dotenv from 'dotenv';
+import * as jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
-import Sale from '../interfaces/interfaceOrder';
+// import Sale from '../interfaces/interfaceOrder';
 
-const createOrder = (req: Request, res: Response) => {
-  const { products } = req.body as Sale;
+dotenv.config();
 
-  return res.status(201).json({ order: { userId: 1, products } });
+const authenticate = {
+  mySecrete: String(process.env.JWT_SECRET),
+};
+
+const createOrder = async (req: Request, res: Response) => {
+  const { authorization } = req.headers;
+
+  if (!authorization) return res.status(401).json({ error: 'Token not found' });
+
+  const decoded = await jwt.verify(authorization, authenticate.mySecrete);
+  if (typeof decoded === 'string') return decoded;
+  // const { products } = req.body as Sale;
+
+  return res.status(201).json(decoded.id);
 };
 
 export default createOrder;
