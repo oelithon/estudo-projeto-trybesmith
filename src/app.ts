@@ -3,6 +3,7 @@ import express from 'express';
 import controllerUser from './controllers/controllerUser';
 import controllerLogin from './controllers/controllerLogin';
 import controllerProduct from './controllers/controllerProducts';
+import controllerSale from './controllers/controllerSales';
 
 import user from './middlewares/validateUser';
 import product from './middlewares/validadeProduct';
@@ -52,6 +53,6 @@ app
 
 app
   .route('/orders')
-  .post();
+  .post(controllerSale);
 
 export default app;
